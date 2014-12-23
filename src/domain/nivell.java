@@ -1,4 +1,4 @@
-package practicaAS;
+package domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
