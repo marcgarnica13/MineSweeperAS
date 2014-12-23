@@ -31,7 +31,7 @@ public class driverPartida {
         System.out.println("Driver " + nombreClase + '.');
         
         partida par = new partida();
-                System.out.println("Eliga una opicion:");
+                System.out.println("Elija una opicion:");
                 System.out.println("\t 1) Crear partida -> partida()");
                 System.out.println("\t 2) Crear partida -> partida(nomNivell)");
                 System.out.println("\t 3) Consultar idPartida -> int getIdPartida()");
