@@ -22,8 +22,6 @@ public class MessageView extends JFrame {
 		this.text = textToShow;
 		this.previous = prev;
 		this.ctrl = ctrl;
-		
-		
 		setTitle("System Message");
 		setMinimumSize(new Dimension(300,200));
 		setResizable(false);
