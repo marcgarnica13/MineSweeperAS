@@ -1,11 +1,21 @@
 package domain;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Nivell {
 
+	@Id
 	private String nom;
+	@Basic
 	private int nombreCasellesXFila;
+	@Basic
 	private int nombreCasellesXColumna;
+	@Basic
 	private int nombreMines;
+	
 	public String getNom() {
 		return nom;
 	}
