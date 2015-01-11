@@ -1,6 +1,9 @@
 package gui;
 
+import java.util.Vector;
+
 public class Casella {
+	private int idPartida;
 	private int numeroFila;
 	private int numeroColumna;
 	private int numero;
@@ -10,16 +13,18 @@ public class Casella {
 	
 	
 	public Casella() {
-		numeroFila = null;
-		numeroColumna = null;
-		numero = null;
+		idPartida = 0;
+		numeroFila = 0;
+		numeroColumna = 0;
+		numero = 0;
 		estaDescoberta = false;
 		estaMarcada = false;
 		teMina = false;
 	}
 	
-	public Casella(int fila, int columna) {
-		numero = null;
+	public Casella(int idPartida, int fila, int columna) {
+		this.idPartida = idPartida;
+		numero = 0;
 		numeroFila = fila;
 		numeroColumna = columna;
 		estaDescoberta = false;
@@ -115,17 +120,41 @@ public class Casella {
 	 * incrementa parametre numero
 	 */
 	public void incrementaNum() {
-		numero = numero + 1;
+		if (teMina == false) numero = numero + 1;
 	}
 	
 	/**
 	 * DescobrirCasella
-	 * @return
+	 * @throws Exception casellaJaDescoberta
+	 * @throws Exception casellaJaMarcada
 	 */
-	public boolean descobrirCasella() {
+	public boolean descobrirCasella() throws Exception {
 		if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		else if (estaMarcada == true) throw new Exception ("casellaJaMarcada");
-		else if ()
+		estaDescoberta = true;
+		if ((teMina == false) && (numero == 0)) {
+			Vector<Casella> veines = new Vector<Casella>(8);
+			CtrlCasella contCasella = new CtrlCasella();
+			
+			//afegir caselles al vector de caselles veines
+			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
+			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna+1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna-1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna));
+			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna+1));
+			
+			for (int i = 0; i < veines.size(); i++) veines.get(i).descobrirCasella();	
+		}
+		return teMina;
+	}
+	
+	public void posarMina(Vector<Casella> llcaselles) {
+		numero = 0;
+		teMina = true;
+		for (int i = 0; i < llcaselles.size(); i++) llcaselles.get(i).incrementaNum();		
 	}
 	
 	/**
