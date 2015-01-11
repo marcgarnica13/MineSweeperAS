@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -96,8 +97,8 @@ public class Partida {
 		return descobert;		
 	}
 	
-	public int getPuntuacio(Time initial) {
-		return estrategia.getPuntuacio(nombreTirades, initial);
+	public int getPuntuacio(Time initialTime) {
+		return estrategia.getPuntuacio(nombreTirades, initialTime);
 	}
 
 }

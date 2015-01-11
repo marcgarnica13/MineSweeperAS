@@ -91,7 +91,7 @@ public class Casella {
 	/**
 	 * @return the estaMarcada
 	 */
-	public boolean isEstaMarcada() {
+	public boolean EstaMarcada() {
 		return estaMarcada;
 	}
 	
@@ -105,7 +105,7 @@ public class Casella {
 	/**
 	 * @return the teMina
 	 */
-	public boolean isTeMina() {
+	public boolean TeMina() {
 		return teMina;
 	}
 	
