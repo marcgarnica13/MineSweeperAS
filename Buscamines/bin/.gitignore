@@ -1,2 +1,4 @@
+/hibernate.cfg.xml
+/domain/
 /gui/
-/images/
+/log4j.properties
