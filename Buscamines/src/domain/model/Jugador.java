@@ -1,6 +1,4 @@
-
 package domain.model;
-
 import java.util.ArrayList;
 
 public class Jugador extends UsuariRegistrat {

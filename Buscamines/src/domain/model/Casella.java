@@ -151,10 +151,14 @@ public class Casella {
 		return teMina;
 	}
 	
-	public void posarMina(Vector<Casella> llcaselles) {
+	public boolean posarMina(Vector<Casella> llcaselles) {
 		numero = 0;
-		teMina = true;
-		for (int i = 0; i < llcaselles.size(); i++) llcaselles.get(i).incrementaNum();		
+		if (teMina == false) {
+			teMina = true;
+			for (int i = 0; i < llcaselles.size(); i++) llcaselles.get(i).incrementaNum();
+			return true;
+		}
+		else return false;
 	}
 	
 	/**
