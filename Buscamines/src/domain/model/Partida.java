@@ -32,6 +32,14 @@ public class Partida {
 		return idPartida;
 	}
 	
+	public boolean estaAcabada() {
+		return estaAcabada;
+	}
+	
+	public boolean estaGuanyada() {
+		return estaGuanyada;
+	}
+	
 	public void setEstaAcabada(boolean estaAcabada) {
 		this.estaAcabada = estaAcabada;
 	}
