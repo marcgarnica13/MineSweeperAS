@@ -1,5 +1,5 @@
 
-package domain;
+package domain.model;
 
 import java.util.ArrayList;
 
