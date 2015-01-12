@@ -7,6 +7,7 @@ public class CtrlDataFactory {
 	private static CtrlDataFactory instance = null;
 	private CtrlNivell ctrlNivell = null;
 	private CtrlUsuariRegistrat ctrlUsuariRegistrat = null;
+	private CtrlJugador ctrlJugador = null;
 	
 	protected CtrlDataFactory() {}
 	public static CtrlDataFactory getInstance() {
@@ -19,6 +20,10 @@ public class CtrlDataFactory {
 		return ctrlNivell;
 	}
 	
+	public CtrlJugador getCtrlJugador() {
+		if(ctrlJugador == null) ctrlJugador = new CtrlJugadorBD();
+		return ctrlJugador;
+	}
 	public CtrlUsuariRegistrat getCtrlUsuariRegistrat() {
 		if (ctrlUsuariRegistrat == null) ctrlUsuariRegistrat =  new CtrlUsuariRegistratBD();
 		return ctrlUsuariRegistrat;

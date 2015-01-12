@@ -12,8 +12,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import domain.model.IEstrategiaPuntuacio;
 import domain.model.Jugador;
 import domain.model.Nivell;
+import domain.model.Partida;
 import domain.model.UsuariRegistrat;
 
 public class DriverNivell {
@@ -22,6 +24,8 @@ public class DriverNivell {
 		////Aqui és on deu estar el "maxacar" el esquema
 		Configuration config = new Configuration();
 		config.addAnnotatedClass(Jugador.class);
+		config.addAnnotatedClass(Partida.class);//pol
+		config.addAnnotatedClass(IEstrategiaPuntuacio.class);
 		config.configure("hibernate.cfg.xml");
 		
 		//És aquesta la linia on maxaco la bd, suposo que no s'ha de crear sempre, nose
