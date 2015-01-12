@@ -11,7 +11,7 @@ public class UcJugarPartida {
 		
 	}
 	
-	public List<TupleNivells> obtenirNivells() throws IOException {
+	public List<TupleNivells> consultarNivells() throws IOException {
 		return new UcConsultarNivells().obtenirNivells();
 	}
 	

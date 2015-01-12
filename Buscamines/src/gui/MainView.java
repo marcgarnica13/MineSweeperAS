@@ -3,10 +3,14 @@ package gui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,6 +22,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ScrollPaneConstants;
+
+import domain.controllers.UcConsultarNivells.TupleNivells;
 
 public class MainView extends JFrame {
 	
@@ -42,8 +48,13 @@ public class MainView extends JFrame {
 		btnPanel.add(btnPlay);
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//crida al ctrl de la vista del cas d'us
-				changeToLevelPanel();
+				List<TupleNivells> nivells = new ArrayList();
+				try {
+					nivells = ctrl.btnPlayPressed();
+					changeToLevelPanel(nivells);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "System Message", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		
@@ -80,7 +91,7 @@ public class MainView extends JFrame {
 		}
 	}
 	
-	private void changeToLevelPanel() {
+	private void changeToLevelPanel(List<TupleNivells> nivells) {
 		lvlPanel = new JPanel();
 		lvlPanel.setBounds(319, 39, 165, 156);
 		getContentPane().add(lvlPanel);
@@ -88,20 +99,13 @@ public class MainView extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(319, 80, 150, 88);
+		scrollPane.setBounds(319, 80, 160, 88);
 		getContentPane().add(scrollPane);
 		
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
-        listModel.addElement("Facil 10x10");
-        listModel.addElement("Normal 30x30");
-        listModel.addElement("Dificil 50x50");
-        listModel.addElement("Facil 10x10");
-        listModel.addElement("Normal 30x30");
-        listModel.addElement("Dificil 50x50");
-        listModel.addElement("Facil 10x10");
-        listModel.addElement("Normal 30x30");
-        listModel.addElement("Dificil 50x50");
-		
+		for (TupleNivells tuple : nivells) {
+			listModel.addElement(tuple.nom +" "+ Integer.toString(tuple.nombreCasellesxFila) + "x" + Integer.toString(tuple.nombreCasellesxColumna) + " Mines: " + Integer.toString(tuple.nombreMines));
+		}
 		JList<String> list = new JList<String>(listModel);
 		scrollPane.setViewportView(list);
 		list.setBounds(0, 25, 165, 123);

@@ -1,13 +1,19 @@
 package gui;
 
+import java.io.IOException;
+import java.util.List;
+
+import domain.controllers.UcConsultarNivells.TupleNivells;
+import domain.controllers.UcJugarPartida;
+
 public class JugarPartidaCtrl {
 	
 	private ViewLogin viewLogin;
+	private UcJugarPartida ucJugar;
 	
 	public JugarPartidaCtrl() {
 		
-		//----Aqui hem de crear un controlador del cas d'us
-		
+		ucJugar = new UcJugarPartida();
 		viewLogin = new ViewLogin(this);
 		
 	}
@@ -16,8 +22,8 @@ public class JugarPartidaCtrl {
 		viewLogin.setVisible(true);
 	}
 	
-	public void btnPlayPressed() throws Exception {
-		//----CRIDA A DOMINI PER OBTENIR NIVELLS
+	public List<TupleNivells> btnPlayPressed() throws IOException {
+		return ucJugar.consultarNivells();
 	}
 
 	public void btnStartPressed(String nomNivell) {
