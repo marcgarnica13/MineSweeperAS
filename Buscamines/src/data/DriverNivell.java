@@ -23,6 +23,7 @@ public class DriverNivell {
 		config.configure("hibernate.cfg.xml");
 		
 		//És aquesta la linia on maxaco la bd, suposo que no s'ha de crear sempre, nose
+		
 		new SchemaExport(config).create(true,true);
 
 		StandardServiceRegistry sv= new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
@@ -30,7 +31,7 @@ public class DriverNivell {
 		Session session = factory.openSession();
 		
 		////Codi per afegir dos nivells
-		
+		/*
 		session.beginTransaction();
 		Nivell easy = new Nivell();
 		easy.setNom("Easy");
@@ -47,18 +48,20 @@ public class DriverNivell {
 		normal.setNombreMines(15);
 		
 		session.save(normal);
-		session.getTransaction().commit();
-		
+		session.getTransaction().commit();*/
 		
 		////Codi per imprimir els nivells
+		System.out.println("pololo");
 		Transaction t = session.beginTransaction();
+		System.out.println("pololo2");
 		Query q = session.createQuery("FROM Nivell");
+		System.out.println("pololo despre de la query");
 		List list = q.list();
 		System.out.println("buuu");
 		System.out.println(list);
 		System.out.println("buuu");
 		t.commit();
-		//session.close();
+		session.close();
 		
 	}
 
