@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import domain.model.Nivell;
+import domain.model.UsuariRegistrat;
 
 public class HibernateUtil {
 
@@ -17,6 +18,7 @@ public class HibernateUtil {
 			// Use hibernate.cfg.xml to get a SessionFactory
 			Configuration config  = new Configuration();
 			config.addAnnotatedClass(Nivell.class);
+			config.addAnnotatedClass(UsuariRegistrat.class);
 			config.configure("hibernate.cfg.xml");
 			//new SchemaExport(config).create(true,true);
 			StandardServiceRegistry sv= new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();

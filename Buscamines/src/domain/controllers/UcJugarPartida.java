@@ -11,6 +11,9 @@ public class UcJugarPartida {
 		
 	}
 	
+	public void ferAutenticacio(String username, String pwd) throws IOException {
+		new UcLogin().login(username, pwd);
+	}
 	public List<TupleNivells> consultarNivells() throws IOException {
 		return new UcConsultarNivells().obtenirNivells();
 	}

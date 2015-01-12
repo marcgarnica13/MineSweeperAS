@@ -31,5 +31,10 @@ public class JugarPartidaCtrl {
 		new GameView(20,15);
 	}
 	
+	public void btnEnterPressed(String username, char[] pwd) throws IOException {
+		String password = new String(pwd);
+		ucJugar.ferAutenticacio(username, password);
+	}
+	
 
 }

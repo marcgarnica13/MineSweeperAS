@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -55,10 +56,15 @@ public class ViewLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//----FALTA FICAR UNA OR AMB UNA EXCEPCIO DEL DOMINI DE QUE NO ES CORRECTE
 				if (textField.getText().isEmpty() || textField_1.getPassword().length == 0)
-					JOptionPane.showMessageDialog(null, "Usuari o password incorrecte", "System Message", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Usuari o password sense indicar", "System Message", JOptionPane.INFORMATION_MESSAGE);
 				else {
-					dispose();
-					new MainView(ctrl);
+					try {
+						ctrl.btnEnterPressed(textField.getText(), textField_1.getPassword());
+						dispose();
+						new MainView(ctrl);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "System Message", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			}
 		});

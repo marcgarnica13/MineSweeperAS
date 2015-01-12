@@ -13,13 +13,14 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import domain.model.Nivell;
+import domain.model.UsuariRegistrat;
 
 public class DriverNivell {
 
 	public static void main(String[] args) {
 		////Aqui és on deu estar el "maxacar" el esquema
 		Configuration config = new Configuration();
-		config.addAnnotatedClass(Nivell.class);
+		config.addAnnotatedClass(UsuariRegistrat.class);
 		config.configure("hibernate.cfg.xml");
 		
 		//És aquesta la linia on maxaco la bd, suposo que no s'ha de crear sempre, nose
@@ -29,6 +30,16 @@ public class DriverNivell {
 		StandardServiceRegistry sv= new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
 		SessionFactory factory = config.buildSessionFactory(sv);
 		Session session = factory.openSession();
+		
+		session.beginTransaction();
+		UsuariRegistrat marc = new UsuariRegistrat();
+		marc.setNom("Marc");
+		marc.setCognom("Garnica");
+		marc.setUsername("marc");
+		marc.setPwd("cram");
+		session.save(marc);
+		session.getTransaction().commit();
+		session.close();
 		
 		////Codi per afegir dos nivells
 		/*
@@ -48,7 +59,7 @@ public class DriverNivell {
 		normal.setNombreMines(15);
 		
 		session.save(normal);
-		session.getTransaction().commit();*/
+		session.getTransaction().commit();
 		
 		////Codi per imprimir els nivells
 		System.out.println("pololo");
@@ -61,7 +72,7 @@ public class DriverNivell {
 		System.out.println(list);
 		System.out.println("buuu");
 		t.commit();
-		session.close();
+		session.close();*/
 		
 	}
 

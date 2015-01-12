@@ -1,10 +1,20 @@
 package domain.model;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UsuariRegistrat {
+	@Basic
 	private String nom;
+	@Basic
 	private String cognom;
+	@Id
 	private String username;
+	@Basic
 	private String pwd;
+	
 	public String getPwd() {
 		return pwd;
 	}
