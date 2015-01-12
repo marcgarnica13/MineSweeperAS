@@ -40,7 +40,9 @@ public class Partida {
 		this.nivell = nivell;
 		jugadorPartidaActual = jug;
 		
-		jugadorPartidaActual.setPartidaActual(this); //???
+		//strategy := getEstrategiaPuntuacio() de :FactoriaEstrategiaPuntuacio
+		
+		jugadorPartidaActual.setPartidaActual(this);
 		int nfiles, ncols, nmines;
 		nfiles = nivell.getNombreCasellesXColumna();
 		ncols = nivell.getNombreCasellesXFila();

@@ -2,6 +2,9 @@ package domain.model;
 
 import java.util.Vector;
 
+import domain.dataInterface.CtrlCasella;
+import domain.dataInterface.CtrlDataFactory;
+
 public class Casella {
 	private int idPartida;
 	private int numeroFila;
@@ -134,10 +137,11 @@ public class Casella {
 		estaDescoberta = true;
 		if ((teMina == false) && (numero == 0)) {
 			Vector<Casella> veines = new Vector<Casella>(8);
-			CtrlCasella contCasella = new CtrlCasella();
-			
+			CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 			//afegir caselles al vector de caselles veines
-			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
+			
+			//cridar el controlador data factory get casella
+			veines.add(ctrlDataFactory.get.getCasella(idPartida, numeroFila-1, numeroColumna-1));
 			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
 			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
 			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
