@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import domain.dataInterface.CtrlDataFactory;
+
 @Entity
 public class Partida {
 	@Id
@@ -40,7 +42,9 @@ public class Partida {
 		this.nivell = nivell;
 		jugadorPartidaActual = jug;
 		
-		//strategy := getEstrategiaPuntuacio() de :FactoriaEstrategiaPuntuacio
+		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
+		estrategia = factoriaEstrategiaPuntuacio.getEstrategiaPuntuacio();
+		
 		
 		jugadorPartidaActual.setPartidaActual(this);
 		int nfiles, ncols, nmines;
