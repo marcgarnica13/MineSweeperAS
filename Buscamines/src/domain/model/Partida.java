@@ -38,7 +38,15 @@ public class Partida {
 		estaGuanyada = false;
 		nombreTirades = 0;
 		this.nivell = nivell;
-		jugadorPartidaActual = jug;	
+		jugadorPartidaActual = jug;
+		
+		jugadorPartidaActual.setPartidaActual(this); //???
+		int nfiles, ncols, nmines;
+		nfiles = nivell.getNombreCasellesXColumna();
+		ncols = nivell.getNombreCasellesXFila();
+		nmines = nivell.getNombreMines();
+		crearCaselles(nfiles, ncols);
+		configurarCaselles(nmines);	
 	}
 	
 	public void partidaAcabada() {
