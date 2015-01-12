@@ -29,5 +29,8 @@ public class Jugador extends UsuariRegistrat {
 		partidesJugades.add(partidaActual);
 		partidaActual = null;
 	}
+	public void setPartidaActual (Partida p) {
+		partidaActual = p;
+	}
 	
 }
