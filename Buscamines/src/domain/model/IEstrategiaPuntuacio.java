@@ -1,9 +1,8 @@
 package domain.model;
 
-import java.sql.Time;
 
 public interface IEstrategiaPuntuacio {
 	
-	public int getPuntuacio(int nombreTirades, Time initialTime);
+	public long getPuntuacio(int nombreTirades, long initialTime);
 	
 }
