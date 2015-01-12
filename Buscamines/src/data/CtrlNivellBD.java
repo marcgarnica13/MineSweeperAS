@@ -1,5 +1,6 @@
 package data;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,12 +12,13 @@ import domain.model.Nivell;
 public class CtrlNivellBD implements CtrlNivell {
 
 	@Override
-	public List<Nivell> getAll() {
+	public List<Nivell> getAll() throws IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Nivell");
         List<Nivell> allNivells = query.list();
         HibernateUtil.shutdown();
-        return allNivells;
+        if (allNivells.size() == 0) throw new IOException("No hi ha nivells");
+        else return allNivells;
 	}
 
 	@Override
