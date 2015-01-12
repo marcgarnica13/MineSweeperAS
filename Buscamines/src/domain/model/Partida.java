@@ -2,16 +2,35 @@ package domain.model;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Partida {
+	@Id
 	private int idPartida;
+	@Basic
 	private int nombreTirades;
+	@Basic
 	private boolean estaAcabada;
+	@Basic
 	private boolean estaGuanyada;
+	@OneToMany
 	private Nivell nivell;
-	private ArrayList< ArrayList<Casella> > vcaselles;
-	private Jugador jugador;
+	@OneToMany
+	private Collection<Collection<Casella>> vcaselles;
+	@OneToOne
+	private Jugador jugadorPartidaActual;
+	@ManyToOne
+	private Jugador jugadorPartidaJugada;
+	@ManyToOne
 	private IEstrategiaPuntuacio estrategia;
 	
 	public Partida(int id, Nivell nivell, Jugador jug) {
@@ -20,12 +39,13 @@ public class Partida {
 		estaGuanyada = false;
 		nombreTirades = 0;
 		this.nivell = nivell;
-		jugador = jug;	
+		jugadorPartidaActual = jug;	
 	}
 	
 	public void partidaAcabada() {
-		jugador.partidaJugada();
-		// ???
+		jugadorPartidaActual.partidaJugada();
+		jugadorPartidaJugada = jugadorPartidaActual;
+		jugadorPartidaActual = null;
 	}
 	
 	public int getIdPartida() {

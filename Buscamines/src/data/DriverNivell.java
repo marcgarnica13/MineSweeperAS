@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import domain.model.Jugador;
 import domain.model.Nivell;
 import domain.model.UsuariRegistrat;
 
@@ -20,7 +21,7 @@ public class DriverNivell {
 	public static void main(String[] args) {
 		////Aqui és on deu estar el "maxacar" el esquema
 		Configuration config = new Configuration();
-		config.addAnnotatedClass(UsuariRegistrat.class);
+		config.addAnnotatedClass(Jugador.class);
 		config.configure("hibernate.cfg.xml");
 		
 		//És aquesta la linia on maxaco la bd, suposo que no s'ha de crear sempre, nose
@@ -32,11 +33,13 @@ public class DriverNivell {
 		Session session = factory.openSession();
 		
 		session.beginTransaction();
-		UsuariRegistrat marc = new UsuariRegistrat();
+		Jugador marc = new Jugador();
 		marc.setNom("Marc");
 		marc.setCognom("Garnica");
 		marc.setUsername("marc");
 		marc.setPwd("cram");
+		marc.setEmail("marcgarnica@gmail.com");
+		
 		session.save(marc);
 		session.getTransaction().commit();
 		session.close();
