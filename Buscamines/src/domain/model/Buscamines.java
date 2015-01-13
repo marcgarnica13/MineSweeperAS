@@ -29,12 +29,8 @@ public class Buscamines {
 		}
 		
 		public int getNextIdPartida() {
-			System.out.println(idPartida);
 			++idPartida;
 			CtrlDataFactory.getInstance().getCtrlBuscamines().updateBuscamines(idPartida);
-			return idPartida;
-		}
-		public int getIdPartida() {
 			return idPartida;
 		}
 	}
