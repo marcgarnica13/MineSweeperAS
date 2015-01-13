@@ -7,6 +7,6 @@ import domain.model.Jugador;
 
 public interface CtrlJugador {
 	
-	public Jugador getJugador(String username);
+	public Jugador getJugador(String username) throws IOException;
 
 }

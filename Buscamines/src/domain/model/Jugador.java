@@ -1,6 +1,7 @@
 package domain.model;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -16,7 +17,7 @@ public class Jugador extends UsuariRegistrat {
 	@OneToOne
 	private Partida partidaActual = null;
 	@OneToMany(targetEntity=Partida.class)
-	private Collection<Partida> partidesJugades = null;
+	private List<Partida> partidesJugades = null;
 	
 	public String getEmail() {
 		return email;

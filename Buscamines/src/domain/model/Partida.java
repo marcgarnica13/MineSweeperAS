@@ -2,6 +2,7 @@ package domain.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.Basic;
@@ -21,10 +22,10 @@ public class Partida {
 	private boolean estaAcabada;
 	@Basic
 	private boolean estaGuanyada;
-	@OneToMany
+	@ManyToOne
 	private Nivell nivell;
 	@OneToMany
-	private Collection<Collection<Casella>> vcaselles;
+	private List<ArrayList<Casella>> vcaselles;
 	@OneToOne
 	private Jugador jugadorPartidaActual;
 	@ManyToOne

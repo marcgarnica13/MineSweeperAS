@@ -16,6 +16,8 @@ import domain.model.IEstrategiaPuntuacio;
 import domain.model.Jugador;
 import domain.model.Nivell;
 import domain.model.Partida;
+import domain.model.TempsEstrategiaPuntuacio;
+import domain.model.TiradesEstrategiaPuntuacio;
 import domain.model.UsuariRegistrat;
 
 public class DriverNivell {
@@ -25,7 +27,8 @@ public class DriverNivell {
 		Configuration config = new Configuration();
 		config.addAnnotatedClass(Jugador.class);
 		config.addAnnotatedClass(Partida.class);//pol
-		config.addAnnotatedClass(IEstrategiaPuntuacio.class);
+		config.addAnnotatedClass(TempsEstrategiaPuntuacio.class);
+		config.addAnnotatedClass(TiradesEstrategiaPuntuacio.class);
 		config.configure("hibernate.cfg.xml");
 		
 		//És aquesta la linia on maxaco la bd, suposo que no s'ha de crear sempre, nose

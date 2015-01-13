@@ -1,5 +1,6 @@
 package domain.dataInterface;
 
+import data.CtrlJugadorBD;
 import data.CtrlNivellBD;
 import data.CtrlUsuariRegistratBD;
 
