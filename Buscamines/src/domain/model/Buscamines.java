@@ -21,7 +21,7 @@ public class Buscamines {
 		private int idPartida;
 		
 		protected Buscamines() {
-			idPartida = CtrlDataFactory.getInstance().getCtrlBuscamines().getId();
+			idPartida = 0;
 		}
 		public static Buscamines getInstance() {
 			if (instance == null) instance = new Buscamines();
