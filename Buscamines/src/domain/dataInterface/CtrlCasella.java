@@ -8,6 +8,8 @@ public interface CtrlCasella {
 	
 	public Casella getCasella(int id, int numF, int numC) throws IOException;
 
-	public void saveCasella(Casella casella) throws Exception;
+	public void saveCasella(Casella casella);
+
+	public void updateCasella(Casella casella);
 	
 }

@@ -154,20 +154,45 @@ public class Casella implements Serializable {
 			CtrlCasella contCasella = ctrlDataFactory.getCtrlCasella();
 			
 			//cridar el controlador data factory get casella
-			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
-			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
-			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
-			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
-			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna+1));
-			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna-1));
-			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna));
-			veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna+1));
+			try {
+				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
+				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
+				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
+				veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
+				veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna+1));
+				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna-1));
+				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna));
+				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna+1));
+			} catch (Exception e) {
+				
+			}
 			
 			for (int i = 0; i < veines.size(); i++) veines.get(i).descobrirCasella();	
 		}
+		actualitzaCasella();
 		return teMina;
 	}
 	
+	private void actualitzaCasella() {
+		CtrlDataFactory.getInstance().getCtrlCasella().updateCasella(this);	
+	}
+
+	public int getIdPartida() {
+		return idPartida;
+	}
+
+	public void setIdPartida(int idPartida) {
+		this.idPartida = idPartida;
+	}
+
+	public boolean isEstaMarcada() {
+		return estaMarcada;
+	}
+
+	public boolean isTeMina() {
+		return teMina;
+	}
+
 	public boolean posarMina(Vector<Casella> llcaselles) {
 		numero = 0;
 		if (teMina == false) {

@@ -72,10 +72,10 @@ public class UcJugarPartida {
 		}
 	}
 	
-	public Tresult descobrirCasella(int numfiles, int numcolumnes) throws Exception {
+	public Tresult descobrirCasella(int numfila, int numcolumna) throws Exception {
 		int id = currentPartida.getIdPartida();
 		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
-		Casella ca = ctrlCasella.getCasella(id, numfiles, numcolumnes);
+		Casella ca = ctrlCasella.getCasella(id, numfila, numcolumna);
 		boolean temina = ca.descobrirCasella();
 		currentPartida.incNombreTirades();
 		Tresult tresult = new Tresult(false,false,0, ca.getNumero());

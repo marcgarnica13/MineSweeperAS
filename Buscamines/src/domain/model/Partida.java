@@ -55,9 +55,17 @@ public class Partida {
 		ncols = nivell.getNombreCasellesXFila();
 		nmines = nivell.getNombreMines();
 		crearCaselles(nfiles, ncols);
-		configurarCaselles(nmines);	
+		configurarCaselles(nmines);
+		guardarCaselles();
 	}
 	
+	private void guardarCaselles() {
+		for (ArrayList<Casella> filacasella : vcaselles) {
+			for (Casella casella : filacasella)
+				CtrlDataFactory.getInstance().getCtrlCasella().saveCasella(casella);
+		}
+	}
+
 	public void partidaAcabada() {
 		jugadorPartidaActual.partidaJugada();
 		jugadorPartidaJugada = jugadorPartidaActual;
@@ -91,7 +99,6 @@ public class Partida {
 		ArrayList<Casella> aux = new ArrayList<Casella>();
 		while (acabat == false) {
 			Casella casella = new Casella(idPartida, fila, col);
-			CtrlDataFactory.getInstance().getCtrlCasella().saveCasella(casella);
 			aux.add(casella);
 			++col;
 			if (col == ncols + 1) {
@@ -107,8 +114,8 @@ public class Partida {
 	public void configurarCaselles(int nmines) {
 		while (nmines > 0) {
 			Vector<Casella> llcaselles = new Vector<Casella>();
-			int fila = (int) (Math.random()*(nivell.getNombreCasellesXColumna()));
-			int columna = (int) (Math.random()*(nivell.getNombreCasellesXFila()));
+			int fila = (int)((Math.random()*(nivell.getNombreCasellesXColumna()-1)));
+			int columna = (int) (Math.random()*(nivell.getNombreCasellesXFila()-1));
 			Casella casella = vcaselles.get(fila).get(columna);
 			
 			for(int i = -1; i < 2; ++i) {
@@ -116,9 +123,9 @@ public class Partida {
 					try {
 					Casella aux = vcaselles.get(i+fila).get(j+columna);
 					llcaselles.add(aux);
+					System.out.println("CASELLA VEINA: " + aux.getNumeroFila() + " " + aux.getNumeroColumna() + " " + aux.getNumero());
 					}
-					catch (Exception e) {
-					}
+					catch (Exception e) {}
 				}
 			}
 			if(casella.posarMina(llcaselles)) {
