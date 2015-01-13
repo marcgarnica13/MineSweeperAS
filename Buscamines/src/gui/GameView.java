@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 
@@ -43,6 +44,7 @@ public class GameView extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtMessageArea;
+	private JPanel gridPanel;
 	
 	public GameView(int rows, int cols, JugarPartidaCtrl jugarPartidaCtrl) {
 		this.rows = rows;
@@ -127,7 +129,7 @@ public class GameView extends JFrame {
 	}
 	
 	private void configureGrid() {
-		JPanel gridPanel = new JPanel();
+		gridPanel = new JPanel();
 		int w = (int) getSize().getWidth();
 		int h = (int) getSize().getHeight();
 		gridPanel.setBounds((w/2)-(20*cols/2), (h/2)-(20*rows/2), 20*cols, 20*rows);
@@ -176,8 +178,19 @@ public class GameView extends JFrame {
 				try {
 					Tresult result = ctrl.mouseEsquerrePressed(r,c);
 					JButton b = (JButton) e.getSource();
-					b.setText(Integer.toString(result.numero));
-					b.setEnabled(false);
+					if (result.guanyada) {
+						new MessageView("CONGRATULATIONS! "+ Integer.toString(result.numero) + " points", ctrl);
+						dispose();
+					}
+					else if (result.acabada) {
+						new MessageView("GAME OVER",ctrl);
+						dispose();
+					}
+					else {
+						b.setText(Integer.toString(result.numero));
+						b.setEnabled(false);
+						casellaClicadaEsquerre("Correct");
+					}
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}

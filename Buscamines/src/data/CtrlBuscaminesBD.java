@@ -17,4 +17,13 @@ public class CtrlBuscaminesBD implements CtrlBuscamines {
 		session.getTransaction().commit();		
 	}
 
+	@Override
+	public int getIdPartida() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query query = session.createQuery("select idPartida from Buscamines");
+		int idPartida = (int) query.list().get(0);
+		System.out.println(idPartida);
+		return idPartida;
+	}
+
 }

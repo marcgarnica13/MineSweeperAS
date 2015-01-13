@@ -5,11 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import data.CtrlNivellBD;
-import data.CtrlUsuariRegistratBD;
 import domain.dataInterface.CtrlDataFactory;
-import domain.dataInterface.CtrlNivell;
-import domain.dataInterface.CtrlUsuariRegistrat;
 
 @Entity
 public class Buscamines {
@@ -22,6 +18,18 @@ public class Buscamines {
 		
 		protected Buscamines() {
 			idPartida = 0;
+		}
+		public long getId() {
+			return id;
+		}
+		public void setId(long id) {
+			this.id = id;
+		}
+		public int getIdPartida() {
+			return idPartida;
+		}
+		public void setIdPartida(int idPartida) {
+			this.idPartida = idPartida;
 		}
 		public static Buscamines getInstance() {
 			if (instance == null) instance = new Buscamines();

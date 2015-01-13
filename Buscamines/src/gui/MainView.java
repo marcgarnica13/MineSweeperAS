@@ -23,6 +23,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ScrollPaneConstants;
 
+import data.HibernateUtil;
 import domain.controllers.UcConsultarNivells.TupleNivells;
 
 public class MainView extends JFrame {
@@ -63,6 +64,7 @@ public class MainView extends JFrame {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				HibernateUtil.shutdown();
 			}
 		});
 		getContentPane().add(btnExit);

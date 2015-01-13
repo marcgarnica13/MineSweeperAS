@@ -43,7 +43,7 @@ public class CtrlCasellaBD implements CtrlCasella {
 	public void updateCasella(Casella casella) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("update Casella c set c.estaDescoberta = :desc, c.estaMarcada = :marc"+" where idPartida = :idp numerofila = :f and numerocolumna = :c");
+		Query query = session.createQuery("update Casella c set c.estaDescoberta = :desc, c.estaMarcada = :marc"+" where idPartida = :idp and numerofila = :f and numerocolumna = :c");
 		query.setParameter("desc", casella.getEstaDescoberta());
 		query.setParameter("marc", casella.EstaMarcada());
 		query.setParameter("idp", casella.getIdPartida());

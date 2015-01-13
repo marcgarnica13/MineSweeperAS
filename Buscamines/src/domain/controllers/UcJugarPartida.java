@@ -1,7 +1,9 @@
 package domain.controllers;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -77,10 +79,10 @@ public class UcJugarPartida {
 		int id = currentPartida.getIdPartida();
 		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
 		Casella ca = ctrlCasella.getCasella(id, numfila, numcolumna);
-		boolean temina = ca.descobrirCasella();
+		boolean teMina = ca.descobrirCasella();
 		currentPartida.incNombreTirades();
 		Tresult tresult = new Tresult(false,false,0, ca.getNumero());
-		if(temina) {
+		if(teMina) {
 			currentPartida.setEstaAcabada(true);
 			currentPartida.partidaAcabada();
 			tresult.acabada = true;
