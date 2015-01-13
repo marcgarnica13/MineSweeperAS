@@ -138,10 +138,10 @@ public class Casella {
 		if ((teMina == false) && (numero == 0)) {
 			Vector<Casella> veines = new Vector<Casella>(8);
 			CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
-			//afegir caselles al vector de caselles veines
+			CtrlCasella contCasella = ctrlDataFactory.getCtrlCasella();
 			
 			//cridar el controlador data factory get casella
-			veines.add(ctrlDataFactory.get.getCasella(idPartida, numeroFila-1, numeroColumna-1));
+			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
 			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
 			veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
 			veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
