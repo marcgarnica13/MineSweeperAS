@@ -11,6 +11,7 @@ import domain.model.Nivell;
 
 public class CtrlCasellaBD implements CtrlCasella {
 	
+	@Override
 	public Casella getCasella(int id, int numF, int numC) throws IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("FROM Casella c WHERE c.idPartida = :id and c.numeroFila = :f and c.numeroColumna = :c");
