@@ -47,7 +47,7 @@ public class UcJugarPartida {
 		return null; 
 	}
 	
-	public void crearPartida(String nomNivell) {
+	public void crearPartida(String nomNivell) throws Exception {
 		int id = Buscamines.getInstance().getNextIdPartida();//TODO
 		CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 		Nivell nivell;
@@ -59,10 +59,10 @@ public class UcJugarPartida {
 	
 	
 	public class Tresult {
-		boolean acabada;
-		boolean guanyada;
-		long puntuacio;
-		int numero;
+		public boolean acabada;
+		public boolean guanyada;
+		public long puntuacio;
+		public int numero;
 		
 		public Tresult(boolean guanyada, boolean acabada, long puntuacio, int numero) {
 			this.acabada = acabada;

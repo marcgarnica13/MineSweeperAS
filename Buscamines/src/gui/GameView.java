@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
 
@@ -26,20 +27,28 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.SwingConstants;
+
+import domain.controllers.UcJugarPartida;
+import domain.controllers.UcJugarPartida.Tresult;
 
 
 public class GameView extends JFrame {
 	
 	private int rows, cols;
+	JugarPartidaCtrl ctrl;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtMessageArea;
 	
-	public GameView(int rows, int cols) {
+	public GameView(int rows, int cols, JugarPartidaCtrl jugarPartidaCtrl) {
 		this.rows = rows;
 		this.cols = cols;
+		this.ctrl = jugarPartidaCtrl;
+		
 		initializeFrame();
 		int w = (int) getSize().getWidth();
 		int h = (int) getSize().getHeight();
@@ -102,7 +111,7 @@ public class GameView extends JFrame {
 		setTitle("Buscamines");
 		int w,h;
 		w = (26*cols < 500)?500:26*cols;
-		h = (26*rows < 250)?250:26*rows;
+		h = (26*rows < 320)?320:26*rows;
 		System.out.println(w+"x");
 		System.out.println(h+"x");
 		setMinimumSize(new Dimension(w,h));
@@ -129,7 +138,7 @@ public class GameView extends JFrame {
 			for (int j = 0; j < cols; j++) {
 				JButton butCasella = new JButton();
 				gridPanel.add(butCasella);
-				butCasella.addActionListener(new HandlerCasella(i,j,this));
+				butCasella.addMouseListener(new HandlerCasella(i+1,j+1,this));
 				butCasella.setMargin(new Insets(0,0,0,0));
 				butCasella.setFont(new Font("Tahoma", Font.BOLD, 16));
 			}
@@ -143,10 +152,15 @@ public class GameView extends JFrame {
 		if (rep == JOptionPane.YES_OPTION) dispose();
 	}
 	
-	public void casellaClicada(int x, int y) {
-		txtMessageArea.setText(Integer.toString(x)+ " " + Integer.toString(y));
+	public void casellaClicadaEsquerre(String text) {
+		txtMessageArea.setText(text);
 	}
-	private class HandlerCasella implements ActionListener {
+	
+	public void casellaClicadaDreta(int x, int y) {
+		txtMessageArea.setText(x+" "+y+" dreta");
+	}
+	
+	private class HandlerCasella implements MouseListener {
 		private int r,c;
 		GameView cont;
 		
@@ -155,9 +169,44 @@ public class GameView extends JFrame {
 			c = j;
 			this.cont = cont;
 		}
-		
-		public void actionPerformed(ActionEvent event) {
-			cont.casellaClicada(r,c);
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (SwingUtilities.isLeftMouseButton(e))
+				try {
+					Tresult result = ctrl.mouseEsquerrePressed(r,c);
+					JButton b = (JButton) e.getSource();
+					b.setText(Integer.toString(result.numero));
+					b.setEnabled(false);
+				} catch (Exception e1) {
+					casellaClicadaEsquerre(e1.getMessage());
+				}
+			else if (SwingUtilities.isRightMouseButton(e))
+				casellaClicadaDreta(r,c);
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

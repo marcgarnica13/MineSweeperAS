@@ -1,5 +1,6 @@
 package domain.dataInterface;
 
+import data.CtrlBuscaminesBD;
 import data.CtrlCasellaBD;
 import data.CtrlJugadorBD;
 import data.CtrlNivellBD;
@@ -11,6 +12,7 @@ public class CtrlDataFactory {
 	private CtrlUsuariRegistrat ctrlUsuariRegistrat = null;
 	private CtrlJugador ctrlJugador = null;
 	private CtrlCasella ctrlCasella = null;
+	private CtrlBuscamines ctrlBuscamines = null;
 	
 	protected CtrlDataFactory() {}
 	public static CtrlDataFactory getInstance() {
@@ -35,5 +37,9 @@ public class CtrlDataFactory {
 	public CtrlCasella getCtrlCasella() {
 		if (ctrlCasella == null) ctrlCasella = new CtrlCasellaBD();
 		return ctrlCasella;
+	}
+	public CtrlBuscamines getCtrlBuscamines() {
+		if (ctrlBuscamines == null) ctrlBuscamines = new CtrlBuscaminesBD();
+		return ctrlBuscamines;
 	}
 }

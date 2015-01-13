@@ -36,7 +36,7 @@ public class Partida {
 	@Basic
 	private int indexEstrategia;
 	
-	public Partida(int id, Nivell nivell, Jugador jug) {
+	public Partida(int id, Nivell nivell, Jugador jug) throws Exception {
 		idPartida = id;
 		estaAcabada = false;
 		estaGuanyada = false;
@@ -84,13 +84,14 @@ public class Partida {
 		this.estaGuanyada = estaGuanyada;
 	}
 	
-	public void crearCaselles(int nfiles, int ncols) {
+	public void crearCaselles(int nfiles, int ncols) throws Exception {
 		int fila = 1;
 		int col = 1;
 		boolean acabat = false;
 		ArrayList<Casella> aux = new ArrayList<Casella>();
 		while (acabat == false) {
 			Casella casella = new Casella(idPartida, fila, col);
+			CtrlDataFactory.getInstance().getCtrlCasella().saveCasella(casella);
 			aux.add(casella);
 			++col;
 			if (col == ncols + 1) {
