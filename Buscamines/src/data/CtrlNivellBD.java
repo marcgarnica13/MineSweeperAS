@@ -16,7 +16,6 @@ public class CtrlNivellBD implements CtrlNivell {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("from Nivell");
         List<Nivell> allNivells = query.list();
-        HibernateUtil.shutdown();
         if (allNivells.size() == 0) throw new IOException("No hi ha nivells");
         else return allNivells;
 	}

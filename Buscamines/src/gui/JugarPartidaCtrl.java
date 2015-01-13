@@ -26,9 +26,9 @@ public class JugarPartidaCtrl {
 		return ucJugar.consultarNivells();
 	}
 
-	public void btnStartPressed(String nomNivell) {
-		//CRIDA A DOMINI PER INICIAR LA PARTIDA
-		new GameView(20,15);
+	public void btnStartPressed(TupleNivells nivell) {
+		ucJugar.crearPartida(nivell.nom);
+		new GameView(nivell.nombreCasellesxColumna, nivell.nombreCasellesxFila);
 	}
 	
 	public void btnEnterPressed(String username, char[] pwd) throws IOException {

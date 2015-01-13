@@ -43,6 +43,7 @@ public class Partida {
 		nombreTirades = 0;
 		this.nivell = nivell;
 		jugadorPartidaActual = jug;
+		vcaselles = new ArrayList<ArrayList<Casella>>();
 		
 		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
 		indexEstrategia = factoriaEstrategiaPuntuacio.getIndexEstrategiaPuntuacio();
@@ -95,7 +96,7 @@ public class Partida {
 			if (col == ncols + 1) {
 				col = 1;
 				vcaselles.add(aux);
-				aux.clear();
+				aux = new ArrayList<Casella>();
 				++fila;
 				if (fila == nfiles + 1) acabat = true;
 			}

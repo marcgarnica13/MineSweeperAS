@@ -124,7 +124,8 @@ public class MainView extends JFrame {
 		getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrl.btnStartPressed(list.getSelectedValue());
+				int index = list.getSelectedIndex();
+				ctrl.btnStartPressed(nivells.get(index));
 				dispose();
 			}
 		});

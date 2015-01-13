@@ -7,6 +7,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -14,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Jugador extends UsuariRegistrat {
 	@Basic
 	private String email;
-	@OneToOne
+	@ManyToOne
 	private Partida partidaActual = null;
 	@OneToMany(targetEntity=Partida.class)
 	private List<Partida> partidesJugades = null;

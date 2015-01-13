@@ -48,14 +48,27 @@ public class DriverNivell {
 		session.beginTransaction();
 		Buscamines mainBuscamines = Buscamines.getInstance();
 		session.save(mainBuscamines);
+		/*UsuariRegistrat user = new UsuariRegistrat();
+		user.setNom("Pol");
+		user.setCognom("Verdaguer");
+		user.setUsername("pol");
+		user.setPwd("lop");
+		session.save(user);
+		
+		/*UsuariRegistrat user2 = new UsuariRegistrat();
+		user2.setNom("Marc");
+		user2.setCognom("Garnica");
+		user2.setUsername("marc");
+		user2.setPwd("cram");
+		session.save(user2);*/
+		
 		/*Jugador marc = new Jugador();
 		marc.setNom("Marc");
 		marc.setCognom("Garnica");
 		marc.setUsername("marc");
 		marc.setPwd("cram");
 		marc.setEmail("marcgarnica@gmail.com");
-		
-		session.save(marc);
+		session.save(marc);*/
 		
 		/*TempsEstrategiaPuntuacio est1 = new TempsEstrategiaPuntuacio();
 		TiradesEstrategiaPuntuacio est2 = new TiradesEstrategiaPuntuacio();
