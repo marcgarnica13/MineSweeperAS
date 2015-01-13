@@ -49,6 +49,7 @@ public class UcJugarPartida {
 	
 	public void crearPartida(String nomNivell) throws Exception {
 		int id = Buscamines.getInstance().getNextIdPartida();//TODO
+		System.out.println("IDDDDDDDDD__-------------------------------------->>>>>>>>>>>> " + id);
 		CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 		Nivell nivell;
 		nivell = ctrlDataFactory.getCtrlNivell().getNivell(nomNivell);
