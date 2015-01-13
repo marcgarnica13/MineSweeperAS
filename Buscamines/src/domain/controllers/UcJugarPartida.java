@@ -7,9 +7,11 @@ import java.util.Set;
 
 import data.CtrlNivellBD;
 import domain.controllers.UcConsultarNivells.TupleNivells;
+import domain.dataInterface.CtrlCasella;
 import domain.dataInterface.CtrlDataFactory;
 import domain.dataInterface.CtrlNivell;
 import domain.model.Buscamines;
+import domain.model.Casella;
 import domain.model.Jugador;
 import domain.model.Nivell;
 import domain.model.Partida;
@@ -55,13 +57,66 @@ public class UcJugarPartida {
 		initTime = System.currentTimeMillis();
 	}
 	
+	
+	public class Tresult {
+		boolean acabada;
+		boolean guanyada;
+		long puntuacio;
+		int numero;
+		
+		public Tresult(boolean guanyada, boolean acabada, long puntuacio, int numero) {
+			this.acabada = acabada;
+			this.guanyada = guanyada;
+			this.puntuacio = puntuacio;
+			this.numero = numero;
+		}
+	}
+	
+	public Tresult descobrirCasella(int numfiles, int numcolumnes) throws Exception {
+		int id = currentPartida.getIdPartida();
+		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
+		Casella ca = ctrlCasella.getCasella(id, numfiles, numcolumnes);
+		boolean temina = ca.descobrirCasella();
+		currentPartida.incNombreTirades();
+		Tresult tresult = new Tresult(false,false,0, ca.getNumero());
+		if(temina) {
+			currentPartida.setEstaAcabada(true);
+			currentPartida.partidaAcabada();
+			tresult.acabada = true;
+		}
+		else if(currentPartida.totesDescobertes()) {
+				currentPartida.setEstaGuanyada(true);
+				int puntuacio = currentPartida.getPuntuacio(initTime);
+				this.enviaMissatge(id, puntuacio);
+				currentPartida.partidaAcabada();
+				tresult.guanyada = true;
+				tresult.acabada = true;
+				tresult.puntuacio = currentPartida.getPuntuacio(initTime);
+		}
+		return tresult;
+	}
+	
+	public void desmarcarCasella(int numFila, int numColumna) throws Exception {
+		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
+		Casella ca = ctrlCasella.getCasella(currentPartida.getIdPartida(), numFila, numColumna);
+		ca.desmarcarCasella();
+	}
+	
+	public void marcarCasella(int numFila, int numColumna) throws Exception {
+		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
+		Casella ca = ctrlCasella.getCasella(currentPartida.getIdPartida(), numFila, numColumna);
+		ca.marcarCasella();
+	}
+	
+	public void enviaMissatge(int id, int puntuacio) {
+		System.out.println("Partida "+ id + " punts: "+ puntuacio);//TODO
+	}
+
+	
 	public List<TupleNivells> consultarNivells() throws IOException {
 		return new UcConsultarNivells().obtenirNivells();
 	}
 	
-	public void descobrirCasella(int numF, int numC) {
-		
-	}
 	
 
 }
