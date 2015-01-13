@@ -1,17 +1,30 @@
 package domain.model;
 
+import java.io.Serializable;
 import java.util.Vector;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import domain.dataInterface.CtrlCasella;
 import domain.dataInterface.CtrlDataFactory;
 
-public class Casella {
+@Entity
+public class Casella implements Serializable {
+	@Id
 	private int idPartida;
+	@Id
 	private int numeroFila;
+	@Id
 	private int numeroColumna;
+	@Basic
 	private int numero;
+	@Basic
 	private boolean estaDescoberta;
+	@Basic
 	private boolean estaMarcada;
+	@Basic
 	private boolean teMina;
 	
 	

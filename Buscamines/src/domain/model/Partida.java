@@ -26,14 +26,15 @@ public class Partida {
 	private boolean estaGuanyada;
 	@ManyToOne
 	private Nivell nivell;
-	@OneToMany
+	@OneToMany(targetEntity=Casella.class)
 	private List<ArrayList<Casella>> vcaselles;
 	@OneToOne
 	private Jugador jugadorPartidaActual;
 	@ManyToOne
 	private Jugador jugadorPartidaJugada;
-	@ManyToOne
-	private IEstrategiaPuntuacio estrategia;
+	//Problemes hibernate mappejant interficies 1:temps 2:tirades
+	@Basic
+	private int indexEstrategia;
 	
 	public Partida(int id, Nivell nivell, Jugador jug) {
 		idPartida = id;
@@ -44,7 +45,7 @@ public class Partida {
 		jugadorPartidaActual = jug;
 		
 		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
-		estrategia = factoriaEstrategiaPuntuacio.getEstrategiaPuntuacio();
+		indexEstrategia = factoriaEstrategiaPuntuacio.getIndexEstrategiaPuntuacio();
 		
 		
 		jugadorPartidaActual.setPartidaActual(this);
@@ -140,6 +141,8 @@ public class Partida {
 	}
 	
 	public int getPuntuacio(long initialTime) {
+		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
+		IEstrategiaPuntuacio estrategia = factoriaEstrategiaPuntuacio.getEstrategiaPuntuacio(indexEstrategia);
 		return (int) estrategia.getPuntuacio(nombreTirades, initialTime);
 	}
 
