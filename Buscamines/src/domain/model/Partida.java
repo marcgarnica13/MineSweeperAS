@@ -140,13 +140,15 @@ public class Partida {
 	}
 	
 	public boolean totesDescobertes() {
-		boolean descobert = true;
-		for (int i = 0; i < vcaselles.size() && descobert; i++) {
-			for (int j = 0; j < vcaselles.get(i).size() && descobert; j++) {
-				if (!vcaselles.get(i).get(j).TeMina()) descobert = vcaselles.get(i).get(j).getEstaDescoberta();
+		System.out.println("Entrem a totes Descoberte");
+		boolean totesDescobertes = true;
+		for (ArrayList<Casella> filaCaselles : vcaselles){
+			if (totesDescobertes == true) {
+			for (Casella c : filaCaselles)
+				totesDescobertes = c.TeMina() || c.getEstaDescoberta();
 			}
 		}
-		return descobert;		
+		return totesDescobertes;
 	}
 	
 	public int getPuntuacio(long initialTime) {

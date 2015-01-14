@@ -207,6 +207,7 @@ public class GameView extends JFrame {
 					if (result.acabada) {
 						System.out.println("Acabada");
 						if (result.guanyada) {
+							
 							new MessageView("CONGRATULATIONS! "
 									+ Integer.toString(result.numero)
 									+ " points", ctrl);

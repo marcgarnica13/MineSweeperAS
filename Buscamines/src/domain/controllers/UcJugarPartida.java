@@ -91,8 +91,10 @@ public class UcJugarPartida {
 		}
 		else if(currentPartida.totesDescobertes()) {
 				currentPartida.setEstaGuanyada(true);
+				System.out.println("Obtenim la puntuacio");
 				int puntuacio = currentPartida.getPuntuacio(initTime);
-				this.enviaMissatge(id, puntuacio);
+				System.out.println(puntuacio);
+				//this.enviaMissatge(id, puntuacio);
 				currentPartida.partidaAcabada();
 				tresult.guanyada = true;
 				tresult.acabada = true;
