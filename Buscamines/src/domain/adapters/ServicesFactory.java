@@ -1,6 +1,5 @@
 package domain.adapters;
 
-import data.ServeiMissatgeriaAdapter;
 
 
 public class ServicesFactory {

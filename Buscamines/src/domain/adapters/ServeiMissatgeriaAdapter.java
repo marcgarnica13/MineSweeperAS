@@ -1,8 +1,5 @@
-package data;
+package domain.adapters;
 
-import domain.adapters.IserveiMissatgeriaAdapter;
-import domain.adapters.ServeiMissatgeria;
-import domain.adapters.ServicesLocator;
 
 public class ServeiMissatgeriaAdapter implements IserveiMissatgeriaAdapter{
 
