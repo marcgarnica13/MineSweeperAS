@@ -18,10 +18,12 @@ public class MessageView extends JFrame {
 
 	private String text;
 	private JugarPartidaCtrl ctrl;
+	GameView previous;
 	
-	public MessageView(String textToShow,JugarPartidaCtrl ctrl) {
+	public MessageView(String textToShow,JugarPartidaCtrl ctrl, GameView cont) {
 		this.text = textToShow;
 		this.ctrl = ctrl;
+		this.previous = cont;
 		
 		setTitle("System Message");
 		setMinimumSize(new Dimension(300,200));
@@ -70,12 +72,14 @@ public class MessageView extends JFrame {
 	}
 	
 	private void actionBtnOk() {
+		previous.dispose();
 		new MainView(ctrl);
 		dispose();
 	}
 	
 	private void actionBtnExit() {
 		HibernateUtil.shutdown();
+		previous.dispose();
 		dispose();
 	}
 }

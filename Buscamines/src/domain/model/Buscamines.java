@@ -17,7 +17,7 @@ public class Buscamines {
 		private int idPartida;
 		
 		protected Buscamines() {
-			idPartida = 0;
+			idPartida = (int) (Math.random()*1000);
 		}
 		public long getId() {
 			return id;

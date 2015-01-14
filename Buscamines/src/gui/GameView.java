@@ -212,13 +212,13 @@ public class GameView extends JFrame {
 						System.out.println("Acabada");
 						if (result.guanyada) {
 							System.out.println("acabada ----------------");
+							cont.setEnabled(false);
 							new MessageView("CONGRATULATIONS! "
 									+ Integer.toString((int)result.puntuacio)
-									+ " points", ctrl);
-							dispose();
+									+ " points", ctrl,cont);
 						} else {
-							new MessageView("GAME OVER", ctrl);
-							dispose();
+							setEnabled(false);
+							new MessageView("GAME OVER", ctrl,cont);
 						}
 					} else {
 						b.setText(Integer.toString(result.numero));

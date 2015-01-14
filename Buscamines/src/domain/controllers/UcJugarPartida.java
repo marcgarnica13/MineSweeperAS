@@ -94,7 +94,8 @@ public class UcJugarPartida {
 				System.out.println("TOTES DESCOBERTEEEEEEEEES!");
 				int puntuacio = currentPartida.getPuntuacio(initTime);
 				System.out.println(puntuacio);
-				this.enviaMissatge(id, puntuacio);
+				System.out.println(currentPlayer.getEmail());
+				this.enviaMissatge(id, puntuacio, currentPlayer.getEmail());
 				currentPartida.partidaAcabada();
 				tresult.guanyada = true;
 				tresult.acabada = true;
@@ -116,9 +117,9 @@ public class UcJugarPartida {
 		ca.marcarCasella();
 	}
 	
-	public void enviaMissatge(int id, int puntuacio) {
+	public void enviaMissatge(int id, int puntuacio, String email) {
         IserveiMissatgeriaAdapter iserveiMissatgeria = ServicesFactory.getInstance().getServeiMissatgeriaAdapter();
-		iserveiMissatgeria.enviarMissatge(id, puntuacio);
+		iserveiMissatgeria.enviarMissatge(id, puntuacio, email);
 	}
 
 	
