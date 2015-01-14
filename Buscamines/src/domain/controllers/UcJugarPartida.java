@@ -82,7 +82,7 @@ public class UcJugarPartida {
 		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
 		Casella ca = ctrlCasella.getCasella(id, numfila, numcolumna);
 		boolean teMina = ca.descobrirCasella();
-		//currentPartida.incNombreTirades();
+		currentPartida.incNombreTirades();
 		Tresult tresult = new Tresult(false,false,0, ca.getNumero());
 		if(teMina) {
 			currentPartida.setEstaAcabada(true);
@@ -98,6 +98,7 @@ public class UcJugarPartida {
 				currentPartida.partidaAcabada();
 				tresult.guanyada = true;
 				tresult.acabada = true;
+				System.out.println("TEMPS: " + initTime);
 				tresult.puntuacio = currentPartida.getPuntuacio(initTime);
 		}
 		return tresult;

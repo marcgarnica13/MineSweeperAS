@@ -8,7 +8,7 @@ public class FactoriaEstrategiaPuntuacio {
 	private IEstrategiaPuntuacio estrategiaTirades = null;
 	
 	public int getIndexEstrategiaPuntuacio() {
-		int aux = (1+(int)Math.random()*2);
+		int aux = (int)(1+Math.random()*100);
 		if(aux%2 == 0) {
 			if(estrategiaTemps == null) estrategiaTemps = new TempsEstrategiaPuntuacio();
 			return 1;

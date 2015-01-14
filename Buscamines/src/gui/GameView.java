@@ -48,13 +48,14 @@ public class GameView extends JFrame {
 	private JTextField txtMessageArea;
 	private JPanel gridPanel;
 	private int tirades;
+	private long initTime; //xapussa
 	
 	public GameView(int rows, int cols, JugarPartidaCtrl jugarPartidaCtrl) {
 		this.rows = rows;
 		this.cols = cols;
 		this.ctrl = jugarPartidaCtrl;
 		this.tirades = 0;
-		
+		initTime = System.currentTimeMillis();
 		initializeFrame();
 		int w = (int) getSize().getWidth();
 		int h = (int) getSize().getHeight();
@@ -201,6 +202,7 @@ public class GameView extends JFrame {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			textField.setText(Integer.toString((int)((System.currentTimeMillis()-initTime)/1000)));
 			if (SwingUtilities.isLeftMouseButton(e))
 				try {
 					System.out.println(Integer.toString(r) + " " + Integer.toString(c));
@@ -211,7 +213,7 @@ public class GameView extends JFrame {
 						if (result.guanyada) {
 							System.out.println("acabada ----------------");
 							new MessageView("CONGRATULATIONS! "
-									+ Integer.toString(result.numero)
+									+ Integer.toString((int)result.puntuacio)
 									+ " points", ctrl);
 							dispose();
 						} else {
@@ -226,10 +228,11 @@ public class GameView extends JFrame {
 					}
 					++tirades;
 					textField_1.setText(Integer.toString(tirades));
+					//textField.setText(Integer.toString((int)((System.currentTimeMillis()-initTime)/1000)));
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}
-			else if (SwingUtilities.isRightMouseButton(e))
+			else if (SwingUtilities.isRightMouseButton(e)) {
 				try {
 					ctrl.mouseDretPressed(r,c);
 					JButton b = (JButton) e.getSource();
@@ -239,10 +242,11 @@ public class GameView extends JFrame {
 					else {
 						b.setText("*");
 					}
-					
+					//textField.setText(Integer.toString((int)((System.currentTimeMillis()-initTime)/1000)));
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}
+			}
 		}
 
 		@Override
