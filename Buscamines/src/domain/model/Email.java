@@ -93,7 +93,7 @@ public class Email {
         }        
     }
     
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         String clave = "jkzwjegqckskridp"; 
         Email e = new Email("fibuscaminas@gmail.com",clave,"pepus1993@gmail.com","marcpolpep");
         if (e.sendMail()){
@@ -101,6 +101,6 @@ public class Email {
         }else{
             JOptionPane.showMessageDialog(null,"El email no se mandó correctamente");
         }
-    }
+    }*/
 
 }
