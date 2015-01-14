@@ -119,6 +119,19 @@ public class UcJugarPartida {
 	public List<TupleNivells> consultarNivells() throws IOException {
 		return new UcConsultarNivells().obtenirNivells();
 	}
+
+	public ArrayList<Integer> infoCasella(int i, int j) throws IOException {
+		ArrayList<Integer> result = new ArrayList<Integer>(2);
+		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
+		Casella ca = ctrlCasella.getCasella(currentPartida.getIdPartida(), i, j);
+		if (ca.getEstaDescoberta()) {
+			result.add(0, 1);
+			result.add(1, ca.getNumero());
+		}
+		else result.add(0,0);
+		
+		return result;
+	}
 	
 	
 

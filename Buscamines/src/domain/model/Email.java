@@ -1,4 +1,4 @@
-package domain.model;
+/*package domain.model;
 
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -103,4 +103,4 @@ public class Email {
         }
     }
 
-}
+}*/

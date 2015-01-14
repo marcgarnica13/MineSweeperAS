@@ -1,6 +1,7 @@
 package gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.controllers.UcConsultarNivells.TupleNivells;
@@ -39,6 +40,21 @@ public class JugarPartidaCtrl {
 
 	public Tresult mouseEsquerrePressed(int x, int y) throws Exception {
 		return ucJugar.descobrirCasella(x, y);
+	}
+
+	public ArrayList<Integer> infoCasella(int i, int j) throws IOException {
+		return ucJugar.infoCasella(i,j);
+	}
+
+	public void mouseDretPressed(int r, int c) throws Exception {
+		try {
+			ucJugar.marcarCasella(r, c);
+		} catch (Exception e) {
+			if (e.getMessage().equals("casellaJaMarcada"))
+				ucJugar.desmarcarCasella(r, c);
+			else throw e;
+		}
+		
 	}
 	
 

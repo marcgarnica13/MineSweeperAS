@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
@@ -101,7 +102,6 @@ public class GameView extends JFrame {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showDialog("Segur que voleu sortir?");
-				HibernateUtil.shutdown();
 			}
 		});
 		getContentPane().add(btnExit);
@@ -153,7 +153,10 @@ public class GameView extends JFrame {
 	
 	private void showDialog(String textToShow) {
 		int rep = JOptionPane.showConfirmDialog(null, textToShow, "System Message", 2);
-		if (rep == JOptionPane.YES_OPTION) dispose();
+		if (rep == JOptionPane.YES_OPTION) {
+			HibernateUtil.shutdown();
+			dispose();
+		}
 	}
 	
 	public void casellaClicadaEsquerre(String text) {
@@ -168,7 +171,17 @@ public class GameView extends JFrame {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				JButton b = (JButton) gridPanel.getComponent(i*rows + j);
-				b.setText(Integer.toString(i));
+				ArrayList<Integer> infoC = null;
+				try {
+					infoC = ctrl.infoCasella(i+1,j+1);
+					if (infoC.get(0) == 1) {
+						b.setText(Integer.toString(infoC.get(1)));
+						b.setEnabled(false);
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	
@@ -188,17 +201,21 @@ public class GameView extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			if (SwingUtilities.isLeftMouseButton(e))
 				try {
+					System.out.println(Integer.toString(r) + " " + Integer.toString(c));
 					Tresult result = ctrl.mouseEsquerrePressed(r,c);
 					JButton b = (JButton) e.getSource();
-					if (result.guanyada) {
-						new MessageView("CONGRATULATIONS! "+ Integer.toString(result.numero) + " points", ctrl);
-						dispose();
-					}
-					else if (result.acabada) {
-						new MessageView("GAME OVER",ctrl);
-						dispose();
-					}
-					else {
+					if (result.acabada) {
+						System.out.println("Acabada");
+						if (result.guanyada) {
+							new MessageView("CONGRATULATIONS! "
+									+ Integer.toString(result.numero)
+									+ " points", ctrl);
+							dispose();
+						} else {
+							new MessageView("GAME OVER", ctrl);
+							dispose();
+						}
+					} else {
 						b.setText(Integer.toString(result.numero));
 						b.setEnabled(false);
 						actualitzaVista();
@@ -208,7 +225,15 @@ public class GameView extends JFrame {
 					casellaClicadaEsquerre(e1.getMessage());
 				}
 			else if (SwingUtilities.isRightMouseButton(e))
-				casellaClicadaDreta(r,c);
+				try {
+					ctrl.mouseDretPressed(r,c);
+					JButton b = (JButton) e.getSource();
+					if (b.getText().equals("*")) b.setText("");
+					else b.setText("*");
+					
+				} catch (Exception e1) {
+					casellaClicadaEsquerre(e1.getMessage());
+				}
 		}
 
 		@Override

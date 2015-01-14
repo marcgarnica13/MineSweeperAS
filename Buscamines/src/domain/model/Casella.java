@@ -136,7 +136,7 @@ public class Casella implements Serializable {
 	 * incrementa parametre numero
 	 */
 	public void incrementaNum() {
-		if (teMina == false) numero = numero + 1;
+		if (!teMina) numero = numero + 1;
 	}
 	
 	/**
@@ -145,31 +145,49 @@ public class Casella implements Serializable {
 	 * @throws Exception casellaJaMarcada
 	 */
 	public boolean descobrirCasella() throws Exception {
+		System.out.println("Descobrir casella");
+		System.out.println(numeroFila);
+		System.out.println(numeroColumna);
 		if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		else if (estaMarcada == true) throw new Exception ("casellaJaMarcada");
 		estaDescoberta = true;
-		if ((teMina == false) && (numero == 0)) {
-			Vector<Casella> veines = new Vector<Casella>(8);
+		actualitzaCasella();
+		System.out.println("Actualitzem casella");
+		if ((!teMina) && (numero == 0)) {
+			Vector<Casella> veines = new Vector<Casella>();
 			CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 			CtrlCasella contCasella = ctrlDataFactory.getCtrlCasella();
-			
-			//cridar el controlador data factory get casella
 			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna+1));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna-1));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila, numeroColumna+1));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna-1));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna));
+			} catch (Exception e) {}
+			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila+1, numeroColumna+1));
-			} catch (Exception e) {
-				
-			}
+			} catch (Exception e) {}
 			
-			for (int i = 0; i < veines.size(); i++) veines.get(i).descobrirCasella();	
+			for (Casella casellaVeina : veines) {
+				try {
+					casellaVeina.descobrirCasella();	
+				} catch (Exception e) {}
+			}
 		}
-		actualitzaCasella();
 		return teMina;
 	}
 	
@@ -195,7 +213,7 @@ public class Casella implements Serializable {
 
 	public boolean posarMina(Vector<Casella> llcaselles) {
 		numero = 0;
-		if (teMina == false) {
+		if (!teMina) {
 			teMina = true;
 			for (int i = 0; i < llcaselles.size(); i++) llcaselles.get(i).incrementaNum();
 			return true;
@@ -209,7 +227,7 @@ public class Casella implements Serializable {
 	 */
 	public void marcarCasella() throws Exception {
 		if (estaMarcada == true) throw new Exception("casellaJaMarcada");
-		else if (estaDescoberta == false) throw new Exception("casellaJaDescoberta");
+		else if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		estaMarcada = true;
 	}
 	

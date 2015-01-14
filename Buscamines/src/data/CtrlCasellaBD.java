@@ -15,18 +15,13 @@ public class CtrlCasellaBD implements CtrlCasella {
 	public Casella getCasella(int id, int numF, int numC) throws IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Query query = session.createQuery("FROM Casella c WHERE c.idPartida = :id and c.numeroFila = :f and c.numeroColumna = :c");
-		System.out.println(id);
-		System.out.println(numF);
-		System.out.println(numC);
 		query.setParameter("id", id);
 		query.setParameter("f", numF);
 		query.setParameter("c", numC);
 		Casella casella = (Casella) query.uniqueResult();
 		if (casella == null) {
-			System.out.println("peta");
 			throw new IOException("No existeix la casella");
 		}
-		System.out.println("no peta");
 		return casella;
 
 	}
