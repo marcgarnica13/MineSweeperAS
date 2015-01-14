@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import data.CtrlNivellBD;
+import domain.adapters.IserveiMissatgeriaAdapter;
+import domain.adapters.ServicesFactory;
 import domain.controllers.UcConsultarNivells.TupleNivells;
 import domain.dataInterface.CtrlCasella;
 import domain.dataInterface.CtrlDataFactory;
@@ -112,7 +114,8 @@ public class UcJugarPartida {
 	}
 	
 	public void enviaMissatge(int id, int puntuacio) {
-		System.out.println("Partida "+ id + " punts: "+ puntuacio);//TODO
+        IserveiMissatgeriaAdapter iserveiMissatgeria = ServicesFactory.getInstance().getServeiMissatgeriaAdapter();
+		iserveiMissatgeria.enviarMissatge(id, puntuacio);
 	}
 
 	

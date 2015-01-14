@@ -13,12 +13,6 @@ public class ServeiMissatgeriaAdapter implements IserveiMissatgeriaAdapter{
         ServeiMissatgeria sm = ServicesLocator.getInstance().getServeiMissatgeria();
         sm.enviarMissatge(missatge);
         
-// UC jugar partida
-        /*
-         * 		IserveiMissatgeriaAdapter iserveiMissatgeria = ServicesFactory.getInstance().getServeiMissatgeriaAdapter();
-		iserveiMissatgeria.enviarMissatge(id, puntuacio);
-         */
-
 	}
 	
 	
