@@ -226,9 +226,18 @@ public class Casella implements Serializable {
 	 * @throws Exception 
 	 */
 	public void marcarCasella() throws Exception {
-		if (estaMarcada == true) throw new Exception("casellaJaMarcada");
+	/*	if (estaMarcada == true) throw new Exception("casellaJaMarcada");   ANTIC PERQUE NO US POSEU NERVIOSOS
 		else if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		estaMarcada = true;
+		actualitzaCasella();*/
+		if (estaDescoberta == true) {
+			System.out.println("TIRO CASELLA JA DESCOBERTA");
+			throw new Exception("casellaJaDescoberta");
+		}
+		else if (estaMarcada == true) {
+			estaMarcada = false;
+		}
+		else estaMarcada = true;
 		actualitzaCasella();
 	}
 	

@@ -50,9 +50,15 @@ public class JugarPartidaCtrl {
 		try {
 			ucJugar.marcarCasella(r, c);
 		} catch (Exception e) {
-			if (e.getMessage().equals("casellaJaMarcada"))
+			System.out.println(e.getMessage()+" <--------- MISSATGE");
+			if (e.getMessage() == "casellaJaMarcada") {
+				System.out.println("entro a desmarcar casella");
 				ucJugar.desmarcarCasella(r, c);
-			else throw e;
+			}
+			else {
+				System.out.println("entro a lerror "+ e.getMessage());
+				throw e;
+			}
 		}
 		
 	}

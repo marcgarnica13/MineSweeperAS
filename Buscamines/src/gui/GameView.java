@@ -228,10 +228,20 @@ public class GameView extends JFrame {
 				try {
 					ctrl.mouseDretPressed(r,c);
 					JButton b = (JButton) e.getSource();
-					if (b.getText().equals("*")) b.setText("");
-					else b.setText("*");
+					if (b.getText().equals("*")) {
+						b.setText("");
+						System.out.println("ES ASTERIIIISC ***");
+					}
+					else {
+						b.setText("*");
+						System.out.println("ENTRO A LELSEEEE");
+
+					}
 					
 				} catch (Exception e1) {
+					System.out.println("ENTRO A ERRROOOOOOOOOOOOOOOOOOOOOOR");
+					JButton b = (JButton) e.getSource();
+					b.setText("");
 					casellaClicadaEsquerre(e1.getMessage());
 				}
 		}
