@@ -94,7 +94,7 @@ public class UcJugarPartida {
 				System.out.println("TOTES DESCOBERTEEEEEEEEES!");
 				int puntuacio = currentPartida.getPuntuacio(initTime);
 				System.out.println(puntuacio);
-				//this.enviaMissatge(id, puntuacio);
+				this.enviaMissatge(id, puntuacio);
 				currentPartida.partidaAcabada();
 				tresult.guanyada = true;
 				tresult.acabada = true;

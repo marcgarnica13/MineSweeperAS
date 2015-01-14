@@ -8,8 +8,8 @@ public class ServeiMissatgeria {
 	
 	public void enviarMissatge(String missatge) {
         String clave = "jkzwjegqckskridp"; 
-        Email e = new Email("fibuscaminas@gmail.com",clave,"pepus1993@gmail.com", missatge);
-        if (e.sendMail()) JOptionPane.showMessageDialog(null,"El email se mandó correctamente");
+        Email e = new Email("fibuscaminas@gmail.com",clave,"marcgarnica13@gmail.com", missatge);
+        if (e.sendMail()) JOptionPane.showMessageDialog(null,"Email enviat correctament");
         else JOptionPane.showMessageDialog(null,"El email no se mandó correctamente");
     }
 
