@@ -143,7 +143,7 @@ public class Partida {
 		boolean descobert = true;
 		for (int i = 0; i < vcaselles.size() && descobert; i++) {
 			for (int j = 0; j < vcaselles.get(i).size() && descobert; j++) {
-				descobert = vcaselles.get(i).get(j).getEstaDescoberta();
+				if (!vcaselles.get(i).get(j).TeMina()) descobert = vcaselles.get(i).get(j).getEstaDescoberta();
 			}
 		}
 		return descobert;		
