@@ -229,6 +229,7 @@ public class Casella implements Serializable {
 		if (estaMarcada == true) throw new Exception("casellaJaMarcada");
 		else if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		estaMarcada = true;
+		actualitzaCasella();
 	}
 	
 	/**
@@ -239,5 +240,6 @@ public class Casella implements Serializable {
 		if (estaMarcada == false) throw new Exception("casellaNoMarcada");
 		else if (estaDescoberta == false) throw new Exception("casellaJaDescoberta");
 		estaMarcada = false;
+		actualitzaCasella();
 	}
 }
