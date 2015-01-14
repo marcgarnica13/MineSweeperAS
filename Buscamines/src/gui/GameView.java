@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 
+import data.HibernateUtil;
 import domain.controllers.UcJugarPartida;
 import domain.controllers.UcJugarPartida.Tresult;
 
@@ -100,6 +101,7 @@ public class GameView extends JFrame {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showDialog("Segur que voleu sortir?");
+				HibernateUtil.shutdown();
 			}
 		});
 		getContentPane().add(btnExit);
@@ -162,6 +164,16 @@ public class GameView extends JFrame {
 		txtMessageArea.setText(x+" "+y+" dreta");
 	}
 	
+	private void actualitzaVista() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				JButton b = (JButton) gridPanel.getComponent(i*rows + j);
+				b.setText(Integer.toString(i));
+			}
+		}
+	
+	}
+	
 	private class HandlerCasella implements MouseListener {
 		private int r,c;
 		GameView cont;
@@ -189,6 +201,7 @@ public class GameView extends JFrame {
 					else {
 						b.setText(Integer.toString(result.numero));
 						b.setEnabled(false);
+						actualitzaVista();
 						casellaClicadaEsquerre("Correct");
 					}
 				} catch (Exception e1) {
