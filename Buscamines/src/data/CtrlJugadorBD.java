@@ -1,14 +1,11 @@
 package data;
 
 import java.io.IOException;
-import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import domain.dataInterface.CtrlJugador;
 import domain.model.Jugador;
-import domain.model.Nivell;
 
 public class CtrlJugadorBD implements CtrlJugador {
 

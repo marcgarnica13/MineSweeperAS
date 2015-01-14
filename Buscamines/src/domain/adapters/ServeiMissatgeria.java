@@ -2,8 +2,6 @@ package domain.adapters;
 
 import javax.swing.JOptionPane;
 
-import domain.model.Email;
-
 public class ServeiMissatgeria {
 	
 	public void enviarMissatge(String missatge, String email) {

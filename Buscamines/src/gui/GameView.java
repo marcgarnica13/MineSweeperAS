@@ -8,20 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import java.awt.GridLayout;
-import java.awt.Component;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -35,7 +26,6 @@ import java.util.ArrayList;
 import javax.swing.SwingConstants;
 
 import data.HibernateUtil;
-import domain.controllers.UcJugarPartida;
 import domain.controllers.UcJugarPartida.Tresult;
 
 
@@ -48,7 +38,7 @@ public class GameView extends JFrame {
 	private JTextField txtMessageArea;
 	private JPanel gridPanel;
 	private int tirades;
-	private long initTime; //xapussa
+	private long initTime;
 	
 	public GameView(int rows, int cols, JugarPartidaCtrl jugarPartidaCtrl) {
 		this.rows = rows;
@@ -140,7 +130,6 @@ public class GameView extends JFrame {
 		gridPanel.setBounds((w/2)-(20*cols/2), (h/2)-(20*rows/2), 20*cols, 20*rows);
 		getContentPane().add(gridPanel);
 		gridPanel.setLayout(new GridLayout(rows,cols));
-		System.out.println("Abans de entrar al for xato");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				JButton butCasella = new JButton();
@@ -150,8 +139,6 @@ public class GameView extends JFrame {
 				butCasella.setFont(new Font("Tahoma", Font.BOLD, 16));
 			}
 		}
-		System.out.println("Ja he fet el for xato");
-
 	}
 	
 	private void showDialog(String textToShow) {
@@ -211,7 +198,6 @@ public class GameView extends JFrame {
 					if (result.acabada) {
 						System.out.println("Acabada");
 						if (result.guanyada) {
-							System.out.println("acabada ----------------");
 							cont.setEnabled(false);
 							new MessageView("CONGRATULATIONS! "
 									+ Integer.toString((int)result.puntuacio)
@@ -228,7 +214,6 @@ public class GameView extends JFrame {
 					}
 					++tirades;
 					textField_1.setText(Integer.toString(tirades));
-					//textField.setText(Integer.toString((int)((System.currentTimeMillis()-initTime)/1000)));
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}
@@ -242,7 +227,6 @@ public class GameView extends JFrame {
 					else {
 						b.setText("*");
 					}
-					//textField.setText(Integer.toString((int)((System.currentTimeMillis()-initTime)/1000)));
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}

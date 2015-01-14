@@ -2,7 +2,6 @@ package domain.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
@@ -124,7 +123,6 @@ public class Partida {
 					try {
 					Casella aux = vcaselles.get(i+fila).get(j+columna);
 					llcaselles.add(aux);
-					System.out.println("CASELLA VEINA: " + aux.getNumeroFila() + " " + aux.getNumeroColumna() + " " + aux.getNumero());
 					}
 					catch (Exception e) {}
 				}
@@ -141,7 +139,6 @@ public class Partida {
 	}
 	
 	public boolean totesDescobertes() {
-		System.out.println("Entrem a totes Descobertes");
 		boolean totesDescobertes = true;
 		for (ArrayList<Casella> filaCaselles : vcaselles){
 			if (totesDescobertes == true) {
@@ -150,7 +147,6 @@ public class Partida {
 					Casella casella = CtrlDataFactory.getInstance().getCtrlCasella().getCasella(idPartida, c.getNumeroFila(), c.getNumeroColumna());
 					boolean aux = casella.TeMina() || casella.getEstaDescoberta();
 					totesDescobertes = totesDescobertes && aux;
-					System.out.println(aux + "   casella " + casella.getNumeroFila() + "  " + casella.getNumeroColumna());
 				}
 				catch (IOException e) {
 					e.printStackTrace();

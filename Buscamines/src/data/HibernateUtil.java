@@ -21,7 +21,6 @@ public class HibernateUtil {
 
 	private static SessionFactory buildSessionFactory() {
 		try {
-			// Use hibernate.cfg.xml to get a SessionFactory
 			Configuration config  = new Configuration();
 			config.addAnnotatedClass(UsuariRegistrat.class);
 			config.addAnnotatedClass(Jugador.class);

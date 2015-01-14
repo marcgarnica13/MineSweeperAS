@@ -1,4 +1,4 @@
-package domain.model;
+package domain.adapters;
 
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -12,7 +12,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.swing.JOptionPane;
 
 
 public class Email {
@@ -93,6 +92,7 @@ public class Email {
         }        
     }
     
+    //---AQUI MOSTREM COM S'UTILITZARIA AQUESTA CLASSE----
     /*public static void main(String[] args){
         String clave = "jkzwjegqckskridp"; 
         Email e = new Email("fibuscaminas@gmail.com",clave,"pepus1993@gmail.com","marcpolpep");

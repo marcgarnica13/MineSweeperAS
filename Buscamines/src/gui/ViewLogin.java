@@ -9,13 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 
 public class ViewLogin extends JFrame {
 
@@ -54,7 +52,6 @@ public class ViewLogin extends JFrame {
 		
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//----FALTA FICAR UNA OR AMB UNA EXCEPCIO DEL DOMINI DE QUE NO ES CORRECTE
 				if (textField.getText().isEmpty() || textField_1.getPassword().length == 0)
 					JOptionPane.showMessageDialog(null, "Usuari o password sense indicar", "System Message", JOptionPane.INFORMATION_MESSAGE);
 				else {

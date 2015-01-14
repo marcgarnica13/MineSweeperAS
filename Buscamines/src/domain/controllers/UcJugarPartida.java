@@ -53,7 +53,6 @@ public class UcJugarPartida {
 	
 	public void crearPartida(String nomNivell) throws Exception {
 		int id = Buscamines.getInstance().getNextIdPartida();//TODO
-		System.out.println("IDDDDDDDDD__-------------------------------------->>>>>>>>>>>> " + id);
 		CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 		Nivell nivell;
 		nivell = ctrlDataFactory.getCtrlNivell().getNivell(nomNivell);
@@ -91,7 +90,6 @@ public class UcJugarPartida {
 		}
 		else if(currentPartida.totesDescobertes()) {
 				currentPartida.setEstaGuanyada(true);
-				System.out.println("TOTES DESCOBERTEEEEEEEEES!");
 				int puntuacio = currentPartida.getPuntuacio(initTime);
 				System.out.println(puntuacio);
 				System.out.println(currentPlayer.getEmail());

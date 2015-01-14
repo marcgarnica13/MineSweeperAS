@@ -7,7 +7,6 @@ import org.hibernate.Session;
 
 import domain.dataInterface.CtrlCasella;
 import domain.model.Casella;
-import domain.model.Nivell;
 
 public class CtrlCasellaBD implements CtrlCasella {
 	

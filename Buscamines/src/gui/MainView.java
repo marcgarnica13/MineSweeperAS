@@ -75,8 +75,6 @@ public class MainView extends JFrame {
 		lblNewLabel.setBounds(10, 14, 309, 299);
 		getContentPane().add(lblNewLabel);
 		
-		//changeToLevelPanel();
-		
 		setVisible(true);
 	}
 	
