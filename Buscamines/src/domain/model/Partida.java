@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -140,12 +141,21 @@ public class Partida {
 	}
 	
 	public boolean totesDescobertes() {
-		System.out.println("Entrem a totes Descoberte");
+		System.out.println("Entrem a totes Descobertes");
 		boolean totesDescobertes = true;
 		for (ArrayList<Casella> filaCaselles : vcaselles){
 			if (totesDescobertes == true) {
-			for (Casella c : filaCaselles)
-				totesDescobertes = c.TeMina() || c.getEstaDescoberta();
+			for (Casella c : filaCaselles){
+				try {
+					Casella casella = CtrlDataFactory.getInstance().getCtrlCasella().getCasella(idPartida, c.getNumeroFila(), c.getNumeroColumna());
+					boolean aux = casella.TeMina() || casella.getEstaDescoberta();
+					totesDescobertes = totesDescobertes && aux;
+					System.out.println(aux + "   casella " + casella.getNumeroFila() + "  " + casella.getNumeroColumna());
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			}
 		}
 		return totesDescobertes;

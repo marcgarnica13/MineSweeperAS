@@ -82,7 +82,7 @@ public class UcJugarPartida {
 		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();
 		Casella ca = ctrlCasella.getCasella(id, numfila, numcolumna);
 		boolean teMina = ca.descobrirCasella();
-		currentPartida.incNombreTirades();
+		//currentPartida.incNombreTirades();
 		Tresult tresult = new Tresult(false,false,0, ca.getNumero());
 		if(teMina) {
 			currentPartida.setEstaAcabada(true);
@@ -91,7 +91,7 @@ public class UcJugarPartida {
 		}
 		else if(currentPartida.totesDescobertes()) {
 				currentPartida.setEstaGuanyada(true);
-				System.out.println("Obtenim la puntuacio");
+				System.out.println("TOTES DESCOBERTEEEEEEEEES!");
 				int puntuacio = currentPartida.getPuntuacio(initTime);
 				System.out.println(puntuacio);
 				//this.enviaMissatge(id, puntuacio);

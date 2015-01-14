@@ -47,11 +47,13 @@ public class GameView extends JFrame {
 	private JTextField textField_1;
 	private JTextField txtMessageArea;
 	private JPanel gridPanel;
+	private int tirades;
 	
 	public GameView(int rows, int cols, JugarPartidaCtrl jugarPartidaCtrl) {
 		this.rows = rows;
 		this.cols = cols;
 		this.ctrl = jugarPartidaCtrl;
+		this.tirades = 0;
 		
 		initializeFrame();
 		int w = (int) getSize().getWidth();
@@ -85,7 +87,7 @@ public class GameView extends JFrame {
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);
 		textField_1.setBounds(66, 30, 86, 20);
-		textField_1.setText("000");
+		textField_1.setText(Integer.toString(tirades));
 		getContentPane().add(textField_1);
 		
 		txtMessageArea = new JTextField();
@@ -207,7 +209,7 @@ public class GameView extends JFrame {
 					if (result.acabada) {
 						System.out.println("Acabada");
 						if (result.guanyada) {
-							
+							System.out.println("acabada ----------------");
 							new MessageView("CONGRATULATIONS! "
 									+ Integer.toString(result.numero)
 									+ " points", ctrl);
@@ -222,6 +224,8 @@ public class GameView extends JFrame {
 						actualitzaVista();
 						casellaClicadaEsquerre("Correct");
 					}
+					++tirades;
+					textField_1.setText(Integer.toString(tirades));
 				} catch (Exception e1) {
 					casellaClicadaEsquerre(e1.getMessage());
 				}
@@ -231,18 +235,12 @@ public class GameView extends JFrame {
 					JButton b = (JButton) e.getSource();
 					if (b.getText().equals("*")) {
 						b.setText("");
-						System.out.println("ES ASTERIIIISC ***");
 					}
 					else {
 						b.setText("*");
-						System.out.println("ENTRO A LELSEEEE");
-
 					}
 					
 				} catch (Exception e1) {
-					System.out.println("ENTRO A ERRROOOOOOOOOOOOOOOOOOOOOOR");
-					JButton b = (JButton) e.getSource();
-					b.setText("");
 					casellaClicadaEsquerre(e1.getMessage());
 				}
 		}
