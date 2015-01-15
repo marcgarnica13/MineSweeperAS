@@ -7,6 +7,9 @@ import javax.persistence.Id;
 
 @Entity
 public class TiradesEstrategiaPuntuacio implements IEstrategiaPuntuacio {
+	/*
+	 * Hem inclos un id necessari per la DB
+	 */
 	@Id
 	@GeneratedValue
 	private long id;

@@ -15,7 +15,6 @@ public class UcLogin {
 		} catch (IOException e) {
 			throw e;
 		}
-		System.out.println(pwd + " " + user.getPwd());
 		if (!pwd.equals(user.getPwd())) throw new IOException("Password incorrecte");
 	}
 

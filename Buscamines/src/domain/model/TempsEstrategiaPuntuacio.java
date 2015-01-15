@@ -7,7 +7,9 @@ import javax.persistence.Id;
 
 @Entity
 public class TempsEstrategiaPuntuacio implements IEstrategiaPuntuacio {
-	
+	/*
+	 * Hem afegit un id per la DB
+	 */
 	@Id
 	@GeneratedValue
 	private long id;

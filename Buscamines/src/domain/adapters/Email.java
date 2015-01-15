@@ -95,11 +95,11 @@ public class Email {
     //---AQUI MOSTREM COM S'UTILITZARIA AQUESTA CLASSE----
     /*public static void main(String[] args){
         String clave = "jkzwjegqckskridp"; 
-        Email e = new Email("fibuscaminas@gmail.com",clave,"pepus1993@gmail.com","marcpolpep");
+        Email e = new Email("fibuscaminas@gmail.com",clave,"pepus1993@gmail.com","Test");
         if (e.sendMail()){
-            JOptionPane.showMessageDialog(null,"El email se mandó correctamente");
+            JOptionPane.showMessageDialog(null,"El email s'ha enviat correctament");
         }else{
-            JOptionPane.showMessageDialog(null,"El email no se mandó correctamente");
+            JOptionPane.showMessageDialog(null,"El email no s'ha enviat correctament");
         }
     }*/
 

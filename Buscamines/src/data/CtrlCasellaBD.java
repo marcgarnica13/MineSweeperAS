@@ -33,6 +33,9 @@ public class CtrlCasellaBD implements CtrlCasella {
 		session.getTransaction().commit();		
 	}
 
+	/*
+	 * El update de Casella nomes actualitza els valors estaMarcada i estaDescoberta a la DB. Perque son els unics atributs que poden variar.
+	 */
 	@Override
 	public void updateCasella(Casella casella) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

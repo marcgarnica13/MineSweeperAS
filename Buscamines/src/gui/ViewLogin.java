@@ -52,6 +52,8 @@ public class ViewLogin extends JFrame {
 		
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Accio quan s'apreta el boto enter
+				//Mirem si hi ha algun camp buit
 				if (textField.getText().isEmpty() || textField_1.getPassword().length == 0)
 					JOptionPane.showMessageDialog(null, "Usuari o password sense indicar", "System Message", JOptionPane.INFORMATION_MESSAGE);
 				else {

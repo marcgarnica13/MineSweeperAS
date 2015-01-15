@@ -17,6 +17,7 @@ public class Buscamines {
 		private int idPartida;
 		
 		protected Buscamines() {
+			//Generador de idPartida inicial cada vegada que s'executa la aplicacio
 			idPartida = (int) (Math.random()*1000);
 		}
 		public long getId() {

@@ -22,6 +22,9 @@ public class Jugador extends UsuariRegistrat {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	/*
+	 * Una vegada la partida esta acabada actualitzem el jugador
+	 */
 	public void partidaJugada() {
 		partidesJugades.add(partidaActual);
 		partidaActual = null;

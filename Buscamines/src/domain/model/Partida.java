@@ -32,7 +32,8 @@ public class Partida {
 	private Jugador jugadorPartidaActual;
 	@ManyToOne
 	private Jugador jugadorPartidaJugada;
-	//Problemes hibernate mappejant interficies 1:temps 2:tirades
+	
+	//Problemes hibernate mappejant interficies ho canviem per un index 1:temps 2:tirades (Mirar FactoriaEstrategiaPuntuacio)
 	@Basic
 	private int indexEstrategia;
 	
@@ -46,6 +47,7 @@ public class Partida {
 		vcaselles = new ArrayList<ArrayList<Casella>>();
 		
 		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
+		//Obtenim de forma random quina estrategia utilitzem
 		indexEstrategia = factoriaEstrategiaPuntuacio.getIndexEstrategiaPuntuacio();
 		
 		
@@ -59,13 +61,20 @@ public class Partida {
 		guardarCaselles();
 	}
 	
+	/*
+	 * Guardem la casella a la DB
+	 */
 	private void guardarCaselles() {
 		for (ArrayList<Casella> filacasella : vcaselles) {
 			for (Casella casella : filacasella)
 				CtrlDataFactory.getInstance().getCtrlCasella().saveCasella(casella);
 		}
 	}
+	
 
+	/*
+	 * Actualitzem les associacions amb jugador perque ara sigui el jugadorPartidaJugada i el jugador tambe ho actualitza
+	 */
 	public void partidaAcabada() {
 		jugadorPartidaActual.partidaJugada();
 		jugadorPartidaJugada = jugadorPartidaActual;
@@ -138,6 +147,9 @@ public class Partida {
 		++nombreTirades;
 	}
 	
+	/*
+	 * Hem d'assegurar que el vector vcaselles esta coherent amb la DB
+	 */
 	public boolean totesDescobertes() {
 		boolean totesDescobertes = true;
 		for (ArrayList<Casella> filaCaselles : vcaselles){
@@ -159,6 +171,7 @@ public class Partida {
 	
 	public int getPuntuacio(long initialTime) {
 		FactoriaEstrategiaPuntuacio factoriaEstrategiaPuntuacio = FactoriaEstrategiaPuntuacio.getInstance();
+		//Amb l'index que tenim obtenim la instancia de la estrategia de puntuacio
 		IEstrategiaPuntuacio estrategia = factoriaEstrategiaPuntuacio.getEstrategiaPuntuacio(indexEstrategia);
 		return (int) estrategia.getPuntuacio(nombreTirades, initialTime);
 	}

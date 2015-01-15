@@ -45,14 +45,13 @@ public class UcJugarPartida {
 			nivells = new UcConsultarNivells().obtenirNivells();
 			return nivells;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null; 
 	}
 	
 	public void crearPartida(String nomNivell) throws Exception {
-		int id = Buscamines.getInstance().getNextIdPartida();//TODO
+		int id = Buscamines.getInstance().getNextIdPartida();
 		CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 		Nivell nivell;
 		nivell = ctrlDataFactory.getCtrlNivell().getNivell(nomNivell);
@@ -61,7 +60,9 @@ public class UcJugarPartida {
 		initTime = System.currentTimeMillis();
 	}
 	
-	
+	/*
+	 * Tupla de retorn de la funcio descobrirCasella(int numfila, int numcolumna)
+	 */
 	public class Tresult {
 		public boolean acabada;
 		public boolean guanyada;
@@ -84,11 +85,13 @@ public class UcJugarPartida {
 		currentPartida.incNombreTirades();
 		Tresult tresult = new Tresult(false,false,0, ca.getNumero());
 		if(teMina) {
+			//Hem clicat una mina
 			currentPartida.setEstaAcabada(true);
 			currentPartida.partidaAcabada();
 			tresult.acabada = true;
 		}
 		else if(currentPartida.totesDescobertes()) {
+				//Hem guanyat
 				currentPartida.setEstaGuanyada(true);
 				int puntuacio = currentPartida.getPuntuacio(initTime);
 				System.out.println(puntuacio);
@@ -125,6 +128,11 @@ public class UcJugarPartida {
 		return new UcConsultarNivells().obtenirNivells();
 	}
 
+	/*
+	 * Aquesta es una funcio que hem afegit que no esta al diagrama. El diagrama de presentacio fa que la funcio descobrirCasella retorni cap
+	 * a la interficie grafica una llista de les caselles que s'han modificat. En comptes d'aixo hem creat aquesta funcio. 
+	 * Per la casella de la currentPartida i fila = i i columna = j accedim a la seva informacio per poder actualitza la interficie grafica
+	 */
 	public ArrayList<Integer> infoCasella(int i, int j) throws IOException {
 		ArrayList<Integer> result = new ArrayList<Integer>(2);
 		CtrlCasella ctrlCasella = CtrlDataFactory.getInstance().getCtrlCasella();

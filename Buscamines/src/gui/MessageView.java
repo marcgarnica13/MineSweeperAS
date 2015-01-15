@@ -14,6 +14,9 @@ import javax.swing.ImageIcon;
 
 import data.HibernateUtil;
 
+/*
+ * Missatge que es mostra per pantalla per sobre del Frame principal
+ */
 public class MessageView extends JFrame {
 
 	private String text;

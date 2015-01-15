@@ -10,7 +10,7 @@ public class ServeiMissatgeria {
         System.out.println(email);
         Email e = new Email("fibuscaminas@gmail.com",clave, email, missatge);
         if (e.sendMail()) JOptionPane.showMessageDialog(null,"Email enviat correctament");
-        else JOptionPane.showMessageDialog(null,"El email no se mandó correctamente");
+        else JOptionPane.showMessageDialog(null,"El email no s'ha enviat correctament");
     }
 
 }

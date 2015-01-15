@@ -6,6 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+/*
+ * La annotacio Joined el que fa es construir la taula UsuariRegistrat amb tota la informacio
+ * i les taules Jugador i Administrador afegeix l'identificador del UsuariRegistrat del que 
+ * hereda i la informacio adicional.
+ */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public class UsuariRegistrat {

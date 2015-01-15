@@ -145,9 +145,6 @@ public class Casella implements Serializable {
 	 * @throws Exception casellaJaMarcada
 	 */
 	public boolean descobrirCasella() throws Exception {
-		System.out.println("Descobrir casella");
-		System.out.println(numeroFila);
-		System.out.println(numeroColumna);
 		if (estaDescoberta == true) throw new Exception("casellaJaDescoberta");
 		else if (estaMarcada == true) throw new Exception ("casellaJaMarcada");
 		estaDescoberta = true;
@@ -157,6 +154,8 @@ public class Casella implements Serializable {
 			Vector<Casella> veines = new Vector<Casella>();
 			CtrlDataFactory ctrlDataFactory = CtrlDataFactory.getInstance();
 			CtrlCasella contCasella = ctrlDataFactory.getCtrlCasella();
+			//No mirem que els indexs son correctes perque ja fem el catch de la excepcio, si retorna excepcio no la tirem
+			//Hem afegit un try catch per cada una de les caselles
 			try {
 				veines.add(contCasella.getCasella(idPartida, numeroFila-1, numeroColumna-1));
 			} catch (Exception e) {}
@@ -211,6 +210,9 @@ public class Casella implements Serializable {
 		return teMina;
 	}
 
+	/*
+	 * Posem mina i a les caselles de llcaselles (que representen les seves caselles veines) els hi incrementem el numero
+	 */
 	public boolean posarMina(Vector<Casella> llcaselles) {
 		numero = 0;
 		if (!teMina) {
