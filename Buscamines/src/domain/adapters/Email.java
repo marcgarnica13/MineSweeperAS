@@ -13,7 +13,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-
+/*
+ * Per utilitzar el servei s'ha d'importar el fitxer mail.jar de la carpeta javamail-1.4.7
+ */
 public class Email {
     
     String usuarioCorreo;
